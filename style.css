@@ -1,0 +1,261 @@
+:root {
+    --bronze: #A0785A;
+    --bronze-light: #C49A6C;
+    --white: #FFFFFF;
+    --glass: rgba(0, 0, 0, 0.65);
+    --border: rgba(160, 120, 90, 0.4);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--white);
+    background: url('assets/Background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: -1;
+}
+
+/* Botão WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    z-index: 10000;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: pulse-green 2s infinite;
+}
+
+.whatsapp-float:hover { 
+    transform: scale(1.1); 
+    background-color: #128c7e; 
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Cabeçalho e Logo */
+nav {
+    padding: 50px 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo-box img { 
+    height: 300px; 
+    width: auto; 
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero .location { 
+    color: #FFFFFF; 
+    font-size: 18px; 
+    letter-spacing: 8px; 
+    margin-bottom: 25px; 
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.hero h1 { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: clamp(50px, 12vw, 100px); 
+    font-weight: 300; 
+    line-height: 1; 
+}
+
+/* Grids de Conteúdo */
+.content-section { 
+    padding: 100px 8%; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+}
+
+.section-header { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 40px; 
+    margin-bottom: 60px; 
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-weight: 300;
+}
+
+.section-header::after { 
+    content: ''; 
+    flex: 1; 
+    height: 1px; 
+    background: var(--border); 
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-bottom: 100px;
+}
+
+.item-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.item-card:hover { 
+    border-color: var(--bronze-light); 
+    transform: translateY(-5px); 
+}
+
+.item-card img { 
+    width: 100%; 
+    height: auto; 
+    border-bottom: 2px solid var(--bronze); 
+    display: block; 
+}
+
+.item-card .label { 
+    padding: 20px 5px 0; 
+    font-size: 13px; 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    color: var(--bronze-light); 
+    font-weight: 600; 
+}
+
+/* Zoom Lightbox */
+#lightbox {
+    display: none;
+    position: fixed;
+    z-index: 20000;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+#lightbox img { 
+    max-width: 90%; 
+    max-height: 90%; 
+    border: 1px solid var(--bronze); 
+}
+
+/* Área de Contato */
+.form-area {
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid var(--border);
+    padding: 60px;
+    max-width: 650px;
+    margin: 0 auto 100px;
+    backdrop-filter: blur(25px);
+}
+
+.form-area h2 { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 38px; 
+    text-align: center; 
+    margin-bottom: 40px; 
+    font-weight: 300; 
+}
+
+input, select { 
+    width: 100%; 
+    padding: 20px; 
+    margin-bottom: 25px; 
+    background: rgba(255,255,255,0.05); 
+    border: 1px solid var(--border); 
+    color: white; 
+    font-size: 16px;
+    border-radius: 0;
+}
+
+.btn-submit { 
+    width: 100%; 
+    padding: 25px; 
+    background: var(--bronze); 
+    color: white; 
+    border: none; 
+    text-transform: uppercase; 
+    font-weight: 700; 
+    letter-spacing: 4px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+
+.btn-submit:hover { 
+    background: #8a6448; 
+}
+
+/* Footer */
+footer { 
+    padding: 80px 5%; 
+    text-align: center; 
+    border-top: 1px solid var(--border); 
+}
+
+.partners { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 50px; 
+    flex-wrap: wrap; 
+}
+
+.partners img { 
+    height: 45px; 
+    opacity: 0.8; 
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 45px; }
+    .logo-box img { height: 300px; }
+    .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+}
