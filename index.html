@@ -54,7 +54,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Topo Organizado */
+        /* Topo Organizado (Sem mistura de elementos) */
         .header-container {
             display: flex;
             flex-direction: column;
@@ -66,13 +66,13 @@
         }
 
         .logo-box {
-            margin-bottom: 50px; /* Aumentado para dar espaço à logo maior */
+            margin-bottom: 40px;
         }
 
         .logo-box img { 
             height: auto; 
             width: 100%; 
-            max-width: 280px; /* Aumentado consideravelmente */
+            max-width: 180px; 
             display: block;
         }
 
@@ -163,8 +163,7 @@
 
         @media (max-width: 480px) {
             .card-grid { grid-template-columns: 1fr; }
-            .logo-box img { max-width: 220px; } /* Ajuste mobile */
-            .logo-box { margin-bottom: 30px; }
+            .logo-box img { max-width: 150px; }
         }
     </style>
 </head>
@@ -211,7 +210,7 @@
         </div>
         <div class="item-card" onclick="openImage('assets/Wy Barra By Living.jpg')">
             <img src="assets/Wy Barra By Living.jpg" alt="Wy Barra By Living">
-            <div class="label">Wy Barra By Living</div>
+            <div class="label">We Barra By Living</div>
         </div>
         <div class="item-card" onclick="openImage('assets/Terreno.jpg')">
             <img src="assets/Terreno.jpg" alt="Terreno">
@@ -230,4 +229,90 @@
             <div class="label">2 Quartos (63m²)</div>
         </div>
         <div class="item-card" onclick="openImage('assets/2 quartos 70m².jpg')">
-            <img src="assets/2 quartos 70m².jpg" alt="2Qhttp://googleusercontent.com/image_generation_content/2
+            <img src="assets/2 quartos 70m².jpg" alt="2Q">
+            <div class="label">2 Quartos (70m²)</div>
+        </div>
+        <div class="item-card" onclick="openImage('assets/3 quartos 83m².jpg')">
+            <img src="assets/3 quartos 83m².jpg" alt="3Q">
+            <div class="label">3 Quartos (83m²)</div>
+        </div>
+        <div class="item-card" onclick="openImage('assets/4 quartos 100m².jpg')">
+            <img src="assets/4 quartos 100m².jpg" alt="4Q">
+            <div class="label">4 Quartos (100m²)</div>
+        </div>
+        <div class="item-card" onclick="openImage('assets/4 quartos 118m².jpg')">
+            <img src="assets/4 quartos 118m².jpg" alt="4Q">
+            <div class="label">4 Quartos (118m²)</div>
+        </div>
+        <div class="item-card" onclick="openImage('assets/Incorporação.jpg')">
+            <img src="assets/Incorporação.jpg" alt="Incorporação">
+            <div class="label">Incorporação</div>
+        </div>
+    </div>
+</div>
+
+<section class="form-area">
+    <h2>Falar com Consultor</h2>
+    <form id="leadForm">
+        <input type="text" id="nome" placeholder="Nome Completo" required>
+        <input type="tel" id="whatsapp" placeholder="WhatsApp (XX) XXXXX-XXXX" required>
+        <select id="interesse">
+            <option value="">Qual tipologia de interesse?</option>
+            <option value="2Q - 63m²">2 Quartos - 63m²</option>
+            <option value="2Q - 70m²">2 Quartos - 70m²</option>
+            <option value="3Q - 84m²">3 Quartos - 84m²</option>
+            <option value="4Q - 100m²">4 Quartos - 100m²</option>
+            <option value="4Q - 118m²">4 Quartos - 118m²</option>
+        </select>
+        <button type="submit" class="btn-submit" id="btnSubmit">ENVIAR</button>
+    </form>
+</section>
+
+<footer>
+    <div class="partners">
+        <img src="assets/Living.png" alt="Living">
+        <img src="assets/Cyrela.png" alt="Cyrela">
+    </div>
+</footer>
+
+<script>
+    function openImage(src) {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        lbImg.src = src;
+        lb.style.display = 'flex';
+    }
+
+    document.getElementById('whatsapp').addEventListener('input', function (e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        if(x) e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('btnSubmit');
+        btn.textContent = "ENVIANDO...";
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbygX5BltCrOk12crGX2zaMGL_StmhRVLi1D72Ao1VBX5TNm4Mt27ySfT1FNNOA1-G_T/exec';
+
+        const params = new URLSearchParams({
+            nome: document.getElementById('nome').value,
+            whatsapp: document.getElementById('whatsapp').value,
+            tipologia: document.getElementById('interesse').value
+        });
+
+        fetch(`${scriptURL}?${params.toString()}`, {
+            method: 'GET',
+            mode: 'no-cors'
+        }).then(() => {
+            btn.textContent = "SOLICITAÇÃO ENVIADA! ✓";
+            btn.style.background = "#28a745";
+            this.reset();
+        }).catch(() => {
+            btn.textContent = "ERRO AO ENVIAR";
+            btn.style.background = "#dc3545";
+        });
+    });
+</script>
+</body>
+</html>
