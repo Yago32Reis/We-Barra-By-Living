@@ -54,7 +54,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Topo Organizado (Sem mistura de elementos) */
+        /* Topo Organizado */
         .header-container {
             display: flex;
             flex-direction: column;
@@ -66,13 +66,13 @@
         }
 
         .logo-box {
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .logo-box img { 
             height: auto; 
             width: 100%; 
-            max-width: 300px; 
+            max-width: 280px; 
             display: block;
         }
 
@@ -123,14 +123,47 @@
         .item-card img { width: 100%; height: auto; border-bottom: 2px solid var(--bronze); display: block; }
         .item-card .label { padding: 15px 5px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--bronze-light); font-weight: 600; }
 
-        /* Lightbox */
+        /* Lightbox Otimizado com Instrução de Rotação */
         #lightbox {
-            display: none; position: fixed; z-index: 20000;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); justify-content: center; align-items: center;
+            display: none; 
+            position: fixed; 
+            z-index: 20000;
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
             padding: 15px;
         }
-        #lightbox img { max-width: 100%; max-height: 85%; border: 1px solid var(--bronze); object-fit: contain; }
+        
+        #lightbox img { 
+            max-width: 100%; 
+            max-height: 80%; 
+            border: 1px solid var(--bronze); 
+            object-fit: contain; 
+        }
+
+        .rotation-tip {
+            font-size: 14px;
+            color: var(--bronze-light);
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(196, 154, 108, 0.3);
+        }
+
+        /* Oculta o aviso automaticamente caso o aparelho já esteja na horizontal */
+        @media (orientation: landscape) {
+            .rotation-tip { display: none; }
+            #lightbox img { max-height: 95%; }
+        }
 
         /* Form */
         .form-area {
@@ -164,6 +197,7 @@
         @media (max-width: 480px) {
             .card-grid { grid-template-columns: 1fr; }
             .logo-box img { max-width: 220px; }
+            .logo-box { margin-bottom: 30px; }
         }
     </style>
 </head>
@@ -174,6 +208,10 @@
 </a>
 
 <div id="lightbox" onclick="this.style.display='none'">
+    <div class="rotation-tip">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        Gire o celular na horizontal para ampliar a imagem
+    </div>
     <img id="lightbox-img" src="" alt="Zoom">
 </div>
 
@@ -209,8 +247,8 @@
             <div class="label">Salão de Festas</div>
         </div>
         <div class="item-card" onclick="openImage('assets/Wy Barra By Living.jpg')">
-            <img src="assets/Wy Barra By Living.jpg" alt="We Barra By Living">
-            <div class="label">We Barra By Living</div>
+            <img src="assets/Wy Barra By Living.jpg" alt="Wy Barra By Living">
+            <div class="label">Wy Barra By Living</div>
         </div>
         <div class="item-card" onclick="openImage('assets/Terreno.jpg')">
             <img src="assets/Terreno.jpg" alt="Terreno">
