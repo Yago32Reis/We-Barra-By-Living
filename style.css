@@ -77,7 +77,7 @@ nav {
 }
 
 .logo-box img { 
-    height: 300px; 
+    height: 280px; 
     width: auto; 
 }
 
@@ -256,6 +256,6 @@ footer {
 /* Responsividade */
 @media (max-width: 768px) {
     .hero h1 { font-size: 45px; }
-    .logo-box img { height: 300px; }
+    .logo-box img { height: 280px; }
     .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
 }
