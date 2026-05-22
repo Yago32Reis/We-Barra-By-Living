@@ -151,6 +151,14 @@
             background: rgba(255,255,255,0.05); border: 1px solid var(--border); 
             color: white; font-size: 16px; border-radius: 0;
             -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        /* Ajuste do fundo preto para as opções do select */
+        select option {
+            background-color: #0a0a0a;
+            color: #ffffff;
         }
         
         .btn-submit { 
@@ -287,7 +295,6 @@
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
-    // Manipulador robusto para abrir imagens no mobile e desktop
     document.querySelectorAll('.item-card').forEach(card => {
         const openEvent = (e) => {
             e.preventDefault();
@@ -301,7 +308,6 @@
         card.addEventListener('click', openEvent);
     });
 
-    // Fecha ao clicar fora da imagem ampliada
     lightbox.addEventListener('click', (e) => {
         if (e.target !== lightboxImg) {
             lightbox.style.display = 'none';
